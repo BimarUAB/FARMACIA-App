@@ -13,7 +13,6 @@ class User(db.Model, UserMixin):
     role = db.Column(db.String(50), default='usuario')
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-
     # Relación con ventas
     ventas = db.relationship('Venta', backref='vendedor', lazy=True)
     
