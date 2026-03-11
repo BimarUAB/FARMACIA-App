@@ -13,7 +13,12 @@ if __name__ == "__main__":
 
 
 
-
+# Crear vendedor
+        if not User.query.filter_by(username="vendedor").first():
+            vendedor_user = User(username="vendedor", email="vendedor@gestionventas.com", role="vendedor")
+            vendedor_user.set_password('1234') 
+            db.session.add(vendedor_user)
+            print("Usuario vendedor creado")
 # Crear usuario normal (opcional)
         if not User.query.filter_by(username="usuario").first():
             usuario_normal = User(username="usuario", email="usuario@gestionventas.com", role="usuario")
