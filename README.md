@@ -1,6 +1,7 @@
 #FARMACIA
 
-OBJETIVOS DEL PROYECTO
+OBJETIVOS DEL PROYECTO:
+
 Desarrollar un sistema web para la gestión de ventas que optimice el control de inventario y registros de ventas.
 
   Implementación:
@@ -13,3 +14,12 @@ Desarrollar un sistema web para la gestión de ventas que optimice el control de
   - Manejo de archivos en Flask
   - Validación de tipos de archivo
   - Visualización de imágenes en tablas
+
+  Objetivos Específicos:
+  -  Controlar stock de productos en tiempo real
+  -  Registrar y gestionar ventas
+  -  Generar análisis estadísticos automáticos con IA
+  -  Implementar chatbot inteligente para consultas
+  -  Proporcionar recomendaciones basadas en datos
+
+
