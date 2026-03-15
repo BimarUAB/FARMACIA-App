@@ -40,4 +40,4 @@ def exportar_producto_pdf(id):
     response.headers['Content-Disposition'] = f'attachment; filename=producto_{producto.id}_{datetime.now().strftime("%Y%m%d")}.csv'
     response.headers['Content-type'] = 'text/csv'
 
-    return response
+ return response
