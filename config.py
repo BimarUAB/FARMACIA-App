@@ -1,4 +1,3 @@
-#ESTA PARTE COMPAÑERO BIMAR LO SUBES TODOO
 import os
 
 class Config:
