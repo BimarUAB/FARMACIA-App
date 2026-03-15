@@ -1,0 +1,21 @@
+# 📚 Librería HELLO - Chatbot con Flask
+
+Sistema de chatbot inteligente para librería, desarrollado con **Flask** y **Groq API** (Llama 3.3). Permite a los clientes consultar información sobre productos, precios y stock en tiempo real.
+
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+---
+
+## ✨ Características
+
+- 🤖 **Chatbot AI** integrado con Groq API (Llama 3.3 70B)
+- 💬 **Widget flotante** responsive y animado
+- 📦 **Consulta de stock** en tiempo real desde base de datos
+- 💰 **Información de precios** actualizada
+- 📱 **Diseño responsive** para móvil y desktop
+- 🎨 **Interfaz moderna** con animaciones y efectos visuales
+- ⚡ **Respuestas instantáneas** con indicador de "escribiendo..."
+
+---
