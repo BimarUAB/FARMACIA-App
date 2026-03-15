@@ -1,0 +1,209 @@
+{% extends 'admin/model/edit.html' %}
+
+{% block page_body %}
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 30px 0;
+    }
+    .edit-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        overflow: hidden;
+    }
+    .edit-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        text-align: center;
+    }
+    .edit-header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+    }
+    .edit-header p {
+        margin: 10px 0 0 0;
+        opacity: 0.9;
+    }
+    .edit-body {
+        padding: 40px;
+    }
+    .form-group {
+        margin-bottom: 25px;
+    }
+    .form-group label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+        display: block;
+        font-size: 0.95rem;
+    }
+    .form-group label .asterisk {
+        color: #dc3545;
+    }
+    .form-control {
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 12px 15px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    textarea.form-control {
+        min-height: 100px;
+        resize: vertical;
+    }
+    .btn-save {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        border: none;
+        color: white;
+        padding: 15px 40px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4);
+        transition: all 0.3s ease;
+    }
+    .btn-save:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(56, 239, 125, 0.6);
+        color: white;
+    }
+    .btn-cancel {
+        background: #6c757d;
+        border: none;
+        color: white;
+        padding: 15px 40px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+    .btn-cancel:hover {
+        background: #5a6268;
+        transform: translateY(-2px);
+        color: white;
+    }
+    .form-actions {
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 2px solid #f0f0f0;
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+    }
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+    .back-link:hover {
+        color: #764ba2;
+        transform: translateX(-5px);
+    }
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    @media (max-width: 768px) {
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+        .edit-body {
+            padding: 20px;
+        }
+    }
+    .field-icon {
+        margin-right: 8px;
+    }
+</style>
+
+<div class="edit-container">
+    <div class="edit-header">
+        <h1><i class="fa fa-edit me-2"></i>Editar Producto</h1>
+        <p>Modifica la información del producto</p>
+    </div>
+    
+    <div class="edit-body">
+        <a href="{{ url_for('.index') }}" class="back-link">
+            <i class="fa fa-arrow-left me-2"></i>Volver a la lista
+        </a>
+        
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombre">
+                        <i class="fa fa-tag field-icon"></i>Nombre del Producto
+                        <span class="asterisk">*</span>
+                    </label>
+                    {{ form.nombre(class="form-control", placeholder="Ingresa el nombre del producto") }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="categoria">
+                        <i class="fa fa-folder field-icon"></i>Categoría
+                        <span class="asterisk">*</span>
+                    </label>
+                    {{ form.categoria(class="form-select") }}
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="descripcion">
+                    <i class="fa fa-align-left field-icon"></i>Descripción
+                </label>
+                {{ form.descripcion(class="form-control", placeholder="Describe el producto...") }}
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="precio">
+                        <i class="fa fa-dollar-sign field-icon"></i>Precio
+                        <span class="asterisk">*</span>
+                    </label>
+                    {{ form.precio(class="form-control", placeholder="0.00", step="0.01") }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="stock">
+                        <i class="fa fa-boxes field-icon"></i>Stock
+                    </label>
+                    {{ form.stock(class="form-control", placeholder="0") }}
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="imagen">
+                    <i class="fa fa-image field-icon"></i>Imagen del Producto
+                </label>
+                {{ form.imagen(class="form-control", accept="image/*") }}
+                <small class="text-muted">Formatos permitidos: PNG, JPG, JPEG, GIF</small>
+            </div>
+            
+            <div class="form-actions">
+                <a href="{{ url_for('.index') }}" class="btn btn-cancel">
+                    <i class="fa fa-times me-2"></i>Cancelar
+                </a>
+                <button type="submit" class="btn btn-save">
+                    <i class="fa fa-save me-2"></i>Guardar Cambios
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
