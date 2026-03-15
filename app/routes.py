@@ -6,24 +6,20 @@ import csv
 from io import StringIO
 from datetime import datetime
 
-# ✅ CORREGIDO: __name__
 reportes_bp = Blueprint('reportes', __name__)
 
-# ✅ CORREGIDO: <int:id>
 @reportes_bp.route('/reporte/producto/<int:id>')
 @login_required
 def reporte_producto(id):
     producto = Producto.query.get_or_404(id)
     return render_template('admin/reporte_producto.html', producto=producto)
 
-# ✅ CORREGIDO: <int:id>
 @reportes_bp.route('/reporte/venta/<int:id>')
 @login_required
 def reporte_venta(id):
     venta = Venta.query.get_or_404(id)
     return render_template('admin/reporte_venta.html', venta=venta)
 
-# ✅ CORREGIDO: <int:id>
 @reportes_bp.route('/exportar/producto/<int:id>/pdf')
 @login_required
 def exportar_producto_pdf(id):
