@@ -12,6 +12,10 @@ usuarios_bp = Blueprint("usuarios", __name__)
 def index():
     search = request.args.get('search', '')
     page = request.args.get('page', 1, type=int)
+    query = User.query
+    
+    if search:
+        query = query.filter(User.username.like(f'%{search}%'))
 
     usuarios = query.paginate(page=page, per_page=10, error_out=False)
     return render_template("usuarios/index.html", usuarios=usuarios, search=search)
@@ -46,13 +50,13 @@ def crear():
             db.session.rollback()
             flash('Error al crear usuario', 'error')
 
+    return render_template("usuarios/crear.html")
 
 @usuarios_bp.route('/editar/<int:id>', methods=['GET', 'POST'])
 @login_required
 @role_required('admin')
 def editar(id):
     usuario = User.query.get_or_404(id)
-
     if request.method == 'POST':
         username = request.form.get('username')
         email = request.form.get('email')
@@ -85,6 +89,9 @@ def editar(id):
 @role_required('admin')
 def eliminar(id):
     usuario = User.query.get_or_404(id)
+    if usuario.id == current_user.id:
+        flash('No puedes eliminar tu propio usuario', 'error')
+        return redirect(url_for('usuarios.index'))
 
     try:
         db.session.delete(usuario)
@@ -94,4 +101,4 @@ def eliminar(id):
         db.session.rollback()
         flash('Error al eliminar usuario', 'error')
 
-return response
+    return redirect(url_for('usuarios.index'))
